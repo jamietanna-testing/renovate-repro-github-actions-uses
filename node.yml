@@ -1,0 +1,20 @@
+# via https://github.com/responsa/actions/blob/716b505130ed384785ac3364081ec11b1b8f1f3c/node.yaml#L15
+name: node-project
+
+on:
+  push:
+    branches:
+      - master
+      - main
+
+env:
+  UPDATE_WEBHOOK: ${{ secrets.UPDATE_WEBHOOK }}
+  HEALTHCHECK_URI: ${{ secrets.HEALTHCHECK_URI }}
+
+jobs:
+  build:
+    uses: responsa/actions/.github/workflows/build-node.yml@main
+    secrets:
+      NPM_HOST: ${{ secrets.RESPONSA_NPM_HOSTNAME }}
+      NPM_TOKEN: ${{ secrets.RESPONSA_NPM_TOKEN }}
+      NPM_SCOPE: ${{ secrets.RESPONSA_NPM_SCOPE }}
